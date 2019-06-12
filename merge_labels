@@ -1,0 +1,21 @@
+#!/usr/bin/python
+
+from glob import glob
+import os
+
+HOME = '/home/bbbig/capstone/res'
+crash_folders = glob(HOME + '/*/crash*')
+
+features = []
+
+for crash_folder in crash_folders:
+  feature_path = os.path.join(crash_folder, 'feature')
+  exploitability_path = os.path.join(crash_folder, 'exploitability')
+
+  feature = eval(open(feature_path).read())
+  exploitability = int(open(exploitability_path).read())
+  feature.append(exploitability)
+
+  features.append(feature)
+
+print features
